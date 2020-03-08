@@ -1,6 +1,5 @@
 # Identity - User management for APIs
-[![Build Status](https://github.com/delivc/identity/badges/master/build.svg)](https://github.com/delivc/identity/commits/master)
-[![Coverage Report](https://github.com/delivc/identity/badges/master/coverage.svg)](https://github.com/delivc/identity/commits/master)
+![Build and Test](https://github.com/delivc/identity/workflows/Build%20and%20Test/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/delivc/identity)](https://goreportcard.com/report/github.com/delivc/identity)
 [![License MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
