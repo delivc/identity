@@ -4,13 +4,13 @@ import (
 	"net/http"
 
 	"github.com/delivc/identity/models"
-	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gofrs/uuid"
 )
 
+// ValidateResponse params for the validate response
 type ValidateResponse struct {
-	Token *jwt.Token   `json:"token"`
-	User  *models.User `json:"user"`
+	Expires int64        `json:"exp"`
+	User    *models.User `json:"user"`
 }
 
 // Validate returns token infos and user informations
@@ -41,8 +41,8 @@ func (a *API) Validate(w http.ResponseWriter, r *http.Request) error {
 	}
 
 	response := ValidateResponse{
-		Token: getToken(ctx),
-		User:  user,
+		Expires: claims.ExpiresAt,
+		User:    user,
 	}
 
 	return sendJSON(w, http.StatusOK, response)
