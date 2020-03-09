@@ -125,6 +125,11 @@ func NewAPIWithVersion(ctx context.Context, globalConfig *conf.GlobalConfigurati
 			r.Put("/", api.UserUpdate)
 		})
 
+		r.Route("/validate", func(r *router) {
+			r.Use(api.requireAuthentication)
+			r.Get("/", api.Validate)
+		})
+
 		r.Route("/admin", func(r *router) {
 			r.Use(api.requireAdminCredentials)
 
