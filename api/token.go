@@ -46,10 +46,16 @@ func (a *API) Token(w http.ResponseWriter, r *http.Request) error {
 	}
 }
 
+type loginParams struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 // ResourceOwnerPasswordGrant implements the password grant type flow
 func (a *API) ResourceOwnerPasswordGrant(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
+
 	cookie := r.Header.Get(useCookieHeader)
 
 	aud := a.requestAud(ctx, r)
