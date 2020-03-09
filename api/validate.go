@@ -1,15 +1,16 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/delivc/identity/models"
+	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gofrs/uuid"
 )
 
 type ValidateResponse struct {
-	User *models.User `json:"user"`
+	Token *jwt.Token   `json:"token"`
+	User  *models.User `json:"user"`
 }
 
 // Validate returns token infos and user informations
@@ -39,10 +40,9 @@ func (a *API) Validate(w http.ResponseWriter, r *http.Request) error {
 		return internalServerError("Database error finding user").WithInternalError(err)
 	}
 
-	token := getToken(ctx)
-	fmt.Println(token)
 	response := ValidateResponse{
-		User: user,
+		Token: getToken(ctx),
+		User:  user,
 	}
 
 	return sendJSON(w, http.StatusOK, response)
